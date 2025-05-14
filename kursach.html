@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Конвертер валют</title>
+  <link rel="stylesheet" href="styles.css">
+  
+
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Конвертер валют </h1>
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Flag_of_Azerbaijan.svg/1200px-Flag_of_Azerbaijan.svg.png" alt="Logo"class="header-image">
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1920px-Flag_of_the_United_States.svg.png" alt="Logo"class="header-image">
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/500px-Flag_of_Europe.svg.png" alt="Logo"class="header-image">
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Flag_of_Russia.svg/500px-Flag_of_Russia.svg.png" alt="Logo"class="header-image">
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Flag_of_Japan.svg/500px-Flag_of_Japan.svg.png" alt="Logo"class="header-image">
+       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/500px-Flag_of_the_People%27s_Republic_of_China.svg.png" alt="Logo"class="header-image">
+      <p class="subtitle">Актуальные курсы валют и конвертация онлайн</p>
+    </header>
+
+    <main>
+      <div class="grid-container">
+        <div class="main-content">
+          <div class="tabs">
+            <div class="tab-list">
+              <button class="tab-button active" data-tab="converter">Конвертер</button>
+              <button class="tab-button" data-tab="charts">Графики</button>
+              <button class="tab-button" data-tab="banks">Курсы банков</button>
+            </div>
+
+            <div class="tab-content active" id="converter">
+              <div class="card">
+                <div class="card-header">
+                  <h2>Конвертация валют</h2>
+                  <button class="refresh-button">
+                    <i class="fas fa-sync-alt"></i>
+                    Обновить курсы
+                  </button>
+                </div>
+
+                <div class="converter-grid">
+                  <div class="converter-column">
+                    <div class="form-group">
+                      <label for="amount">Сумма</label>
+                      <input type="number" id="amount" value="100" min="0" step="0.01">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="fromCurrency">Из валюты</label>
+                      <div class="select-wrapper">
+                        <select id="fromCurrency">
+                          <option value="USD" selected>
+                            USD - Доллар США
+                          </option>
+                          <option value="EUR">EUR - Евро</option>
+                          <option value="RUB">RUB - Российский рубль</option>
+                          <option value="GBP">GBP - Британский фунт</option>
+                          <option value="JPY">JPY - Японская иена</option>
+                          <option value="CNY">CNY - Китайский юань</option>
+                          <option value="AZN">AZN - Азербайджанский манат</option>
+                          <option value="UAH">UAH - Украинская гривна</option>
+                        </select>
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="swap-button-container">
+                    <button id="swapButton" class="swap-button">
+                      <i class="fas fa-arrow-right"></i>
+                    </button>
+                  </div>
+
+                  <div class="converter-column">
+                    <div class="form-group">
+                      <label for="result">Результат</label>
+                      <input type="text" id="result" value="170.00" readonly class="result-input">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="toCurrency">В валюту</label>
+                      <div class="select-wrapper">
+                        <select id="toCurrency">
+                          <option value="USD">USD - Доллар США</option>
+                          <option value="EUR">EUR - Евро</option>
+                          <option value="RUB">RUB - Российский рубль</option>
+                          <option value="GBP">GBP - Британский фунт</option>
+                          <option value="JPY">JPY - Японская иена</option>
+                          <option value="CNY">CNY - Китайский юань</option>
+                          <option value="AZN" selected>AZN - Азербайджанский манат</option>
+                          <option value="UAH">UAH - Украинская гривна</option>
+                        </select>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="exchange-rate-info">
+                  <div class="rate-header">
+                    <div class="rate-label">Текущий курс:</div>
+                    <div class="info-icon" title="Курсы обновляются каждый час">
+                      <i class="fas fa-info-circle"></i>
+                    </div>
+                  </div>
+                  <div class="current-rate">
+                    <div class="rate-display">
+                      <div class="currency-with-flag">
+                        <div class="currency-flag flag-us"></div>
+                        <span>1 $</span>
+                      </div>
+                      =
+                      <div class="currency-with-flag">
+                        <span id="rateValue">1.7000 ₼</span>
+                        <div class="currency-flag flag-az"></div>
+                      </div>
+                    </div>
+                    <div class="rate-change positive">
+                      <i class="fas fa-chart-line"></i>
+                      <span>+0.2%</span>
+                    </div>
+                  </div>
+                  <div class="update-time">Обновлено: 13.05.2025 </div>
+                </div>
+              </div>
+
+              <div class="rates-table-container">
+                <div class="rates-table-header">
+                  <h2>Курсы валют к манату (AZN)</h2>
+                </div>
+                <div class="rates-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Валюта</th>
+                        <th>Покупка</th>
+                        <th>Продажа</th>
+                        <th>НБА</th>
+                        <th>Изменение</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="currency-info">
+                            <div class="currency-flag flag-us"></div>
+                            <div>
+                              <div class="currency-code">USD</div>
+                              <div class="currency-name">Доллар США</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>1.6950</td>
+                        <td>1.7050</td>
+                        <td>1.7000</td>
+                        <td>
+                          <div class="change-info positive">
+                            <i class="fas fa-chart-line"></i>
+                            <span>+0.0020 (+0.12%)</span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="currency-info">
+                            <div class="currency-flag flag-eu"></div>
+                            <div>
+                              <div class="currency-code">EUR</div>
+                              <div class="currency-name">Евро</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>1.8400</td>
+                        <td>1.8600</td>
+                        <td>1.8500</td>
+                        <td>
+                          <div class="change-info positive">
+                            <i class="fas fa-chart-line"></i>
+                            <span>+0.0050 (+0.27%)</span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="currency-info">
+                            <div class="currency-flag flag-ru"></div>
+                            <div>
+                              <div class="currency-code">RUB</div>
+                              <div class="currency-name">Российский рубль</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>0.0182</td>
+                        <td>0.0186</td>
+                        <td>0.0184</td>
+                        <td>
+                          <div class="change-info negative">
+                            <i class="fas fa-chart-line down"></i>
+                            <span>-0.0001 (-0.54%)</span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="currency-info">
+                            <div class="currency-flag flag-gb"></div>
+                            <div>
+                              <div class="currency-code">GBP</div>
+                              <div class="currency-name">Британский фунт</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>2.1400</td>
+                        <td>2.1800</td>
+                        <td>2.1600</td>
+                        <td>
+                          <div class="change-info positive">
+                            <i class="fas fa-chart-line"></i>
+                            <span>+0.0100 (+0.46%)</span>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-content" id="charts">
+              <div class="card">
+                <div class="chart-container">
+                  <div class="chart-header">
+                    <h2>Динамика курса USD/AZN</h2>
+                    <div class="period-selector">
+                      <select id="chartPeriod">
+                        <option value="7">7 дней</option>
+                        <option value="30" selected>30 дней</option>
+                        <option value="90">3 месяца</option>
+                        <option value="180">6 месяцев</option>
+                        <option value="365">1 год</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="chart-container">
+                    <img src="https://i.yapx.ru/Y8UBN.png" width="600" height="300" alt="chart.png"></a>
+                  </div>
+                  <div class="chart-stats">
+                    <div class="stat-card">
+                      <div class="stat-label">Минимум</div>
+                      <div class="stat-value red">1.6950</div>
+                    </div>
+                    <div class="stat-card">
+                      <div class="stat-label">Максимум</div>
+                      <div class="stat-value green">1.7050</div>
+                    </div>
+                    <div class="stat-card">
+                      <div class="stat-label">Среднее</div>
+                      <div class="stat-value blue">1.7000</div>
+                    </div>
+                    <div class="stat-card">
+                      <div class="stat-label">Текущее</div>
+                      <div class="stat-value">1.7000</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-content" id="banks">
+              <div class="card">
+                <div class="banks-header">
+                  <h2>Курсы банков USD/AZN</h2>
+                  <div class="operation-selector">
+                    <select id="operationType">
+                      <option value="buy" selected>Покупка валюты</option>
+                      <option value="sell">Продажа валюты</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="info-box">
+                  <p>Курсы покупки USD за AZN в банках Азербайджана. Выгоднее продать USD в банк по более высокому курсу.</p>
+                </div>
+
+                <div class="banks-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Банк</th>
+                        <th>Покупка</th>
+                        <th>Продажа</th>
+                        <th>Спред</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="best-rate">
+                        <td>
+                          <div class="bank-info">
+                            <div class="bank-logo">
+                              <div class="bank-logo-placeholder">КБ</div>
+                            </div>
+                            <div>
+                              <div class="bank-name">Капитал Банк</div>
+                              <div class="best-rate-label">Лучший курс покупки</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="best-buy">1.6950</td>
+                        <td>1.7050</td>
+                        <td>0.59%</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="bank-info">
+                            <div class="bank-logo">
+                              <div class="bank-logo-placeholder">ПБ</div>
+                            </div>
+                            <div class="bank-name">Паша Банк</div>
+                          </div>
+                        </td>
+                        <td>1.6930</td>
+                        <td>1.7070</td>
+                        <td>0.83%</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="bank-info">
+                            <div class="bank-logo">
+                              <div class="bank-logo-placeholder">ХБ</div>
+                            </div>
+                            <div class="bank-name">Халг Банк</div>
+                          </div>
+                        </td>
+                        <td>1.6940</td>
+                        <td>1.7060</td>
+                        <td>0.71%</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="bank-info">
+                            <div class="bank-logo">
+                              <div class="bank-logo-placeholder">НБА</div>
+                            </div>
+                            <div class="bank-name">Национальный Банк Азербайджана</div>
+                          </div>
+                        </td>
+                        <td>1.7000</td>
+                        <td>1.7000</td>
+                        <td>0.00%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="update-time small">
+                  Данные обновлены: 07.05.2025 18:03:15
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar">
+          <div class="card">
+            <h2>Популярные курсы</h2>
+
+            <div class="popular-rates">
+              <div class="rate-card">
+                <div class="rate-pair">
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-us"></div>
+                    <span>USD</span>
+                  </div>
+                  <i class="fas fa-arrow-right"></i>
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-az"></div>
+                    <span>AZN</span>
+                  </div>
+                </div>
+                <div class="rate-value">
+                  <div class="value">1.7000</div>
+                  <div class="change positive">
+                    <i class="fas fa-chart-line"></i>
+                    <span>+0.3%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rate-card">
+                <div class="rate-pair">
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-eu"></div>
+                    <span>EUR</span>
+                  </div>
+                  <i class="fas fa-arrow-right"></i>
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-az"></div>
+                    <span>AZN</span>
+                  </div>
+                </div>
+                <div class="rate-value">
+                  <div class="value">1.8500</div>
+                  <div class="change positive">
+                    <i class="fas fa-chart-line"></i>
+                    <span>+0.3%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rate-card">
+                <div class="rate-pair">
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-ru"></div>
+                    <span>RUB</span>
+                  </div>
+                  <i class="fas fa-arrow-right"></i>
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-az"></div>
+                    <span>AZN</span>
+                  </div>
+                </div>
+                <div class="rate-value">
+                  <div class="value">0.0184</div>
+                  <div class="change positive">
+                    <i class="fas fa-chart-line"></i>
+                    <span>+0.3%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rate-card">
+                <div class="rate-pair">
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-us"></div>
+                    <span>USD</span>
+                  </div>
+                  <i class="fas fa-arrow-right"></i>
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-eu"></div>
+                    <span>EUR</span>
+                  </div>
+                </div>
+                <div class="rate-value">
+                  <div class="value">0.9200</div>
+                  <div class="change positive">
+                    <i class="fas fa-chart-line"></i>
+                    <span>+0.3%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rate-card">
+                <div class="rate-pair">
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-us"></div>
+                    <span>USD</span>
+                  </div>
+                  <i class="fas fa-arrow-right"></i>
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-ru"></div>
+                    <span>RUB</span>
+                  </div>
+                </div>
+                <div class="rate-value">
+                  <div class="value">92.5000</div>
+                  <div class="change positive">
+                    <i class="fas fa-chart-line"></i>
+                    <span>+0.3%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="nba-rates">
+              <h3>Курс НБА</h3>
+              <div class="nba-rate-list">
+                <div class="nba-rate-item">
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-us"></div>
+                    <span>USD / AZN</span>
+                  </div>
+                  <div class="value">1.7000</div>
+                </div>
+                <div class="nba-rate-item">
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-eu"></div>
+                    <span>EUR / AZN</span>
+                  </div>
+                  <div class="value">1.8500</div>
+                </div>
+                <div class="nba-rate-item">
+                  <div class="currency-with-flag">
+                    <div class="currency-flag flag-ru"></div>
+                    <span>RUB / AZN</span>
+                  </div>
+                  <div class="value">0.0184</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-box blue">
+              <h3>Информация</h3>
+              <p>Курсы валют обновляются ежедневно. Данные предоставлены Национальным Банком Азербайджана и ведущими коммерческими банками.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 Конвертер валют. Все права защищены.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
